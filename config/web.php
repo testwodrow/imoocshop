@@ -47,6 +47,11 @@ $config = [
         ],
         */
     ],
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Admin',
+        ],
+    ],
     'params' => $params,
 ];
 
@@ -60,6 +65,7 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'allowedIPs'=>['127.0.0.1', '192.168.0.*', 'localhost', '::1'],
     ];
 }
 
