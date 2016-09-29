@@ -6,7 +6,7 @@
  * Time: 14:11
  */
 ?>
-
+<?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -45,6 +45,7 @@
 
 
 </head>
+<?php $this->beginBody() ?>
 <body>
 
 <div class="wrapper">
@@ -587,7 +588,9 @@
 
 </script>
 
+<?php $this->endBody() ?>
 </body>
 </html>
+<?php $this->endPage() ?>
 
 

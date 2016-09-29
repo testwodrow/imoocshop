@@ -2,12 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2016/9/25
- * Time: 15:11
+ * Date: 2016/9/29
+ * Time: 11:13
  */
-/**
- * @var $model \app\modules\admin\models\Admin
- */
+
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 ?>
@@ -45,39 +43,17 @@ use yii\bootstrap\Html;
     ]) ?>
     <div class="span4 box">
         <div class="content-wrap">
-            <h6>慕课商城 - 后台管理</h6>
+            <h6>慕课商城 - 找回密码</h6>
+            <?php if(Yii::$app->session->hasFlash('info')){
+                echo Yii::$app->session->getFlash('info');
+            } ?>
             <?=$form->field($model, 'admin_user')->textInput(['class'=>'span12', 'placeholder'=>'admin_user']) ?>
-            <?=$form->field($model, 'admin_pass')->passwordInput(['class'=>'span12', 'placeholder'=>'admin_pass']) ?>
-            <?=Html::a('忘记密码?', ['/admin/public/seekpassword'], ['class'=>'forgot']) ?>
-            <?=$form->field($model, 'rememberMe')->checkbox([
-                'id'=>'remember-me',
-                'template'=>'<div class="remember">{input}<label for="remember-me">记住我</label></div>'
-            ]) ?>
-            <?=Html::submitButton('login', ['class'=>'btn-glow primary login']) ?>
+            <?=$form->field($model, 'admin_email')->textInput(['class'=>'span12', 'placeholder'=>'admin_email']) ?>
+            <?=Html::a('login', ['/admin/public/login'], ['class'=>'forgot']) ?>
+            <?=Html::submitButton('找回', ['class'=>'btn-glow primary login']) ?>
         </div>
     </div>
     <?php ActiveForm::end() ?>
-    <!--<form id="w0" action="/index.php?r=admin/public/login" method="post" role="form">
-        <input type="hidden" name="_csrf" value="VGVVTVVZb0UmKzIrLWtCL2VdNB0tLxoQJVU0AQA6JzMwIgQ0Zy0sNw==">
-        <div class="span4 box">
-            <div class="content-wrap">
-                <h6>慕课商城 - 后台管理</h6>
-                <div class="form-group field-admin-adminuser">
-                    <p class="help-block help-block-error"></p>
-                    <input type="text" id="admin-adminuser" class="span12" name="Admin[adminuser]" placeholder="管理员账号"></div>
-                <div class="form-group field-admin-adminpass">
-                    <p class="help-block help-block-error"></p>
-                    <input type="password" id="admin-adminpass" class="span12" name="Admin[adminpass]" placeholder="管理员密码"></div>
-                <a href="/index.php?r=admin%2Fpublic%2Fseekpassword" class="forgot">忘记密码?</a>
-                <div class="form-group field-remember-me">
-                    <div class="remember">
-                        <input type="hidden" name="Admin[rememberMe]" value="0">
-                        <input type="checkbox" id="remember-me" name="Admin[rememberMe]" value="1" checked>
-                        <label for="remember-me">记住我</label></div>
-                </div>
-                <button type="submit" class="btn-glow primary login">登录</button></div>
-        </div>
-    </form>-->
 </div>
 <!-- scripts -->
 <script src="assets/admin/js/jquery-latest.js"></script>

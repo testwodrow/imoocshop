@@ -7,6 +7,7 @@
  */
 ?>
 <!DOCTYPE html>
+<?php $this->beginPage() ?>
 <html>
 <head>
     <title>慕课商城 - 后台管理</title>
@@ -39,6 +40,7 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<?php $this->beginBody() ?>
 <body>
 
 <!-- navbar -->
@@ -154,7 +156,7 @@
                 </a>
             </li>
             <li class="settings hidden-phone">
-                <a href="<?php echo yii\helpers\Url::to(['public/logout']) ?>" role="button">
+                <a href="<?= yii\helpers\Url::to(['/admin/public/logout']) ?>" role="button">
                     <i class="icon-share-alt"></i>
                 </a>
             </li>
@@ -376,8 +378,9 @@
     });
 
 </script>
-
+<?php $this->endBody() ?>
 </body>
 </html>
+<?php $this->endPage() ?>
 
 
