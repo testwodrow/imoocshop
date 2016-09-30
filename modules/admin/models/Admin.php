@@ -38,9 +38,9 @@ class Admin extends \yii\db\ActiveRecord
             [['admin_email'], 'validateEmail'],
             [['admin_email'], 'string', 'max' => 50],
 
-            [['admin_user', 'admin_pass'], 'unique', 'targetAttribute' => ['admin_user', 'admin_pass'], 'message' => 'The combination of Admin User and Admin Pass has already been taken.'],
+            /*[['admin_user', 'admin_pass'], 'unique', 'targetAttribute' => ['admin_user', 'admin_pass'], 'message' => 'The combination of Admin User and Admin Pass has already been taken.'],
             [['admin_user', 'admin_email'], 'unique', 'targetAttribute' => ['admin_user', 'admin_email'], 'message' => 'The combination of Admin User and Admin Email has already been taken.'],
-            ['rememberMe', 'boolean'],
+            ['rememberMe', 'boolean'],*/
         ];
     }
 
@@ -61,7 +61,7 @@ class Admin extends \yii\db\ActiveRecord
 //            $data = self::find()->where(['admin_user = :user and admin_pass = :pass', [':user'=>$this->admin_user, ':pass'=>md5($this->admin_pass)]])->one();
             $data = self::find()->where(['admin_user'=>$this->admin_user, 'admin_email'=>$this->admin_email])->one();
             if (is_null($data)){
-                $this->addError('admin_pass', '用户名或邮箱不匹配');
+                $this->addError('admin_email', '用户名或邮箱不匹配');
             }
         }
     }
@@ -101,12 +101,13 @@ class Admin extends \yii\db\ActiveRecord
         $this->scenario = 'seekpass';
         if ($this->load($post) && $this->validate()){
             $mailer = Yii::$app->mailer->compose();
-            $mailer->setForm("test@test.test");
+            $mailer->setFrom("test@test.test");
             $mailer->setTo("test1@test.test");
             $mailer->setSubject("test seek pass");
             if ($mailer->send()){
                 return true;
             }
         }
+        return false;
     }
 }
